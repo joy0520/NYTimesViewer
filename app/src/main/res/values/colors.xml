@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- News viewer activity -->
+    <drawable name="mainViewerListBg">#42000000</drawable>
+
+    <!-- Article item -->
+    <color name="colorErrorLoadingThumbnail">#d55549</color>
+    <color name="colorNoThumbnail">#123456</color>
+    <color name="cardViewBg">#FFFFFF</color>
 </resources>

@@ -1,5 +1,16 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_main_viewer_padding">6dp</dimen>
+    <dimen name="main_viewer_list_margin_top">4dp</dimen>
+
+    <!-- Article item card view -->
+    <dimen name="item_article_card_elevation">4dp</dimen>
+    <dimen name="item_article_card_radius">2dp</dimen>
+    <dimen name="item_article_card_margin">2dp</dimen>
+    <dimen name="item_article_image_height">100dp</dimen>
+    <dimen name="item_article_headline_side_padding">2dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
 </resources>
