@@ -2,6 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_main_viewer_padding">6dp</dimen>
     <dimen name="main_viewer_list_margin_top">4dp</dimen>
+    
+    <!-- icons size -->
+    <dimen name="ic_main_viewer">30dp</dimen>
+    <dimen name="ic_search">24dp</dimen>
+    <dimen name="ic_setting">24dp</dimen>
 
     <!-- Article item card view -->
     <dimen name="item_article_card_elevation">4dp</dimen>

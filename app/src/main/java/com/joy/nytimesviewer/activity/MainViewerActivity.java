@@ -2,12 +2,16 @@ package com.joy.nytimesviewer.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -33,14 +37,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainViewerActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_search)
-    EditText etSearch;
-    @BindView(R.id.btn_search)
-    Button btnSearch;
     @BindView(R.id.list)
     RecyclerView mList;
     @BindView(R.id.activity_main_viewer)
     RelativeLayout activityMainViewer;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private ArticlesGson mArticlesGson;
     private List<Article> mArticles;
@@ -53,7 +55,7 @@ public class MainViewerActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         ButterKnife.setDebug(true);
         setupList();
-
+        setupToolbar();
     }
 
     private void setupList() {
@@ -66,18 +68,39 @@ public class MainViewerActivity extends AppCompatActivity {
         mList.setAdapter(mAdapter);
     }
 
+    protected void setupToolbar() {
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.drawable.ic_main_viewer);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main_viewer, menu);
+        MenuItem searchItem = menu.findItem(R.id.toolbar_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // perform query here
+                searchView.clearFocus();
+                Toast.makeText(MainViewerActivity.this, "Searching " + query, Toast.LENGTH_SHORT)
+                        .show();
+                onArticleSearch(query);
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return true;
     }
 
-    public void onArticleSearch(View view) {
-        String query = etSearch.getText().toString();
-
-        Toast.makeText(this, "Searching " + query, Toast.LENGTH_SHORT).show();
-
+    public void onArticleSearch(String query) {
         AsyncHttpClient client = new AsyncHttpClient();
         String baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         RequestParams params = new RequestParams();
@@ -103,7 +126,7 @@ public class MainViewerActivity extends AppCompatActivity {
             }
         });
         // Close input manager (virtual keyboard)
-        InputMethodManager ipm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager ipm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         ipm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }

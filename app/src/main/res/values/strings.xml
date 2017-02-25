@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">NYTimesViewer</string>
     <string name="nyt_api_key" translatable="false">ef0266134f3644fb84cead8073757cde</string>
+    <string name="app_name">NYTimesSearch</string>
+    <string name="activity_article_web_view">Article detail</string>
 
-    <string name="main_viewer_btn_search">Search</string>
     <string name="main_viewer_et_search_hint">Insert to search</string>
+    <string name="main_viewer_toolbar_item_title_search">Search</string>
+    <string name="main_viewer_toolbar_item_title_setting">Setting</string>
 </resources>

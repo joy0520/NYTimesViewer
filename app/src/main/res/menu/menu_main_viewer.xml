@@ -2,8 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Item1" />
     <item
-        app:showAsAction="ifRoom|withText"
-        android:title="Item2" />
+        android:id="@+id/toolbar_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/main_viewer_toolbar_item_title_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/toolbar_setting"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/main_viewer_toolbar_item_title_setting"
+        app:showAsAction="ifRoom"/>
 </menu>

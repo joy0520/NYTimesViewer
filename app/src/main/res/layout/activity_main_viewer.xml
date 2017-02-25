@@ -8,15 +8,19 @@
     android:padding="@dimen/activity_main_viewer_padding"
     tools:context="com.joy.nytimesviewer.activity.MainViewerActivity">
 
-    <EditText
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<EditText
         android:id="@+id/et_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_search"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/btn_search"
+        android:layout_below="@id/toolbar"
         android:layout_toLeftOf="@+id/btn_search"
         android:layout_toStartOf="@+id/btn_search"
         android:hint="@string/main_viewer_et_search_hint"
@@ -29,14 +33,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@id/et_search"
         android:onClick="onArticleSearch"
-        android:text="@string/main_viewer_btn_search" />
+        android:text="@string/main_viewer_btn_search" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_search"
+        android:layout_below="@id/toolbar"
         android:layout_marginTop="@dimen/main_viewer_list_margin_top" />
 </RelativeLayout>
