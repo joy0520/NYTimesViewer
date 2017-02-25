@@ -6,4 +6,26 @@
     <string name="main_viewer_et_search_hint">Insert to search</string>
     <string name="main_viewer_toolbar_item_title_search">Search</string>
     <string name="main_viewer_toolbar_item_title_setting">Setting</string>
+
+    <!-- setting dialog -->
+    <string name="setting_dialog_title">Setup Filter</string>
+    <string name="setting_dialog_title_date_picker">Begin date</string>
+    <string name="setting_dialog_title_sort">Sorted by</string>
+    <string name="setting_dialog_title_desk">Category</string>
+    <string name="setting_dialog_checkbox_arts">Arts</string>
+    <string name="setting_dialog_checkbox_fashion">"Fashion &amp; Style"</string>
+    <string name="setting_dialog_checkbox_sports">Sports</string>
+
+    <!-- setting dialog sorted-by -->
+    <string-array name="setting_dialog_title_sorted_by">
+        <item>Oldest</item>
+        <item>Newest</item>
+    </string-array>
+    <string name="setting_query_sort_arg_newest" translatable="false">newest</string>
+    <string name="setting_query_sort_arg_oldest" translatable="false">oldest</string>
+    
+    <!-- setting dialog category -->
+    <string name="setting_query_news_desk_arts">"&quot;Arts&quot;"</string>
+    <string name="setting_query_news_desk_fashion">"&quot;Fashion&quot;"</string>
+    <string name="setting_query_news_desk_sports">"&quot;Sports&quot;"</string>
 </resources>

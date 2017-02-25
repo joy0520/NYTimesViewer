@@ -11,4 +11,8 @@
     <color name="colorErrorLoadingThumbnail">#d55549</color>
     <color name="colorNoThumbnail">#123456</color>
     <color name="cardViewBg">#FFFFFF</color>
+
+    <!-- Article setting dialog -->
+    <color name="colorArticleSettingDialogTitle">#000000</color>
+    <color name="colorArticleSettingDialogItemTitle">#183579</color>
 </resources>

@@ -63,7 +63,6 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
                         .load(article.getThumbnailFullUrl())
                         .fit()
                         .centerInside()
-//                        .placeholder(R.drawable.ic_article_no_thumbnail)
                         .error(R.drawable.ic_error_loading_thumbnail)
                         .into(articleHolder.image, new Callback() {
                             @Override
@@ -79,7 +78,6 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
                             }
                         });
             } else {
-                Log.i("else", "default");
                 Picasso.with(mContext)
                         .load(R.drawable.ic_article_no_thumbnail)
                         .fit()
@@ -87,7 +85,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
                         .into(articleHolder.image);
                 articleHolder.progressBar.setVisibility(View.INVISIBLE);
             }
-            articleHolder.headline.setText(article.getHeadline());
+            if (articleHolder.headline != null) {
+                articleHolder.headline.setText(article.getHeadline());
+            }
 
             // Set up item click listener
             if (article.getWebUrl() != null && !article.getWebUrl().isEmpty()) {
@@ -108,13 +108,14 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
         return mArticles.size();
     }
 
-    public void setArtices(List<Article> articles) {
-        if (mArticles.size() == 0) {
-            mArticles.addAll(articles);
-        } else {
-            mArticles.clear();
-            mArticles.addAll(articles);
-        }
+    public void addAllArticles(List<Article> articles) {
+        mArticles.clear();
+        mArticles.addAll(articles);
+        notifyDataSetChanged();
+    }
+
+    public void addArticles(List<Article> articles) {
+        mArticles.addAll(articles);
         notifyDataSetChanged();
     }
 

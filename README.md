@@ -2,28 +2,28 @@
 
 NYTimesViewer is an android app that allows a user to search for articles on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: 9 hours spent in total
+Time spent: 18 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
 * [X] User can **search for news article** by specifying a query and launching a search. Search displays a grid of image results from the New York Times Search API.
-* [ ] User can click on "settings" which allows selection of **advanced search options** to filter results
-* [ ] User can configure advanced search filters such as:
-  * [ ] Begin Date (using a date picker)
-  * [ ] News desk values (Arts, Fashion & Style, Sports)
-  * [ ] Sort order (oldest or newest)
-* [ ] Subsequent searches have any filters applied to the search results
+* [X] User can click on "settings" which allows selection of **advanced search options** to filter results
+* [X] User can configure advanced search filters such as:
+  * [X] Begin Date (using a date picker)
+  * [X] News desk values (Arts, Fashion & Style, Sports)
+  * [X] Sort order (oldest or newest)
+* [X] Subsequent searches have any filters applied to the search results
 * [X] User can tap on any article in results to view the contents in an embedded browser.
-* [ ] User can **scroll down to see more articles**. The maximum number of articles is limited by the API search.
+* [X] User can **scroll down to see more articles**. The maximum number of articles is limited by the API search.
 
 The following **optional** features are implemented:
 
 * [ ] Implements robust error handling, [check if internet is available](http://guides.codepath.com/android/Sending-and-Managing-Network-Requests#checking-for-network-connectivity), handle error cases, network failures
-* [ ] Used the **ActionBar SearchView** or custom layout as the query box instead of an EditText
+* [X] Used the **ActionBar SearchView** or custom layout as the query box instead of an EditText
 * [ ] User can **share an article link** to their friends or email it to themselves
-* [ ] Replaced Filter Settings Activity with a lightweight modal overlay
+* [X] Replaced Filter Settings Activity with a lightweight modal overlay
 * [ ] Improved the user interface and experiment with image assets and/or styling and coloring
 
 The following **bonus** features are implemented:

@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SettingDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="SettingDialogItem">
+        <item name="android:textColor">@color/colorArticleSettingDialogItemTitle</item>
+        <item name="android:textSize">@dimen/setting_dialog_title_size</item>
+        <item name="android:padding">@dimen/setting_dialog_title_padding</item>
+    </style>
+
+
 </resources>

@@ -41,4 +41,12 @@ public class ArticlesGson {
     public List<Article> getArticles() {
         return response.docs;
     }
+
+    public int getHits() {
+        return response.meta.hits;
+    }
+
+    public int getOffset() {
+        return response.meta.offset;
+    }
 }
