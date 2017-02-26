@@ -2,7 +2,7 @@
 
 NYTimesViewer is an android app that allows a user to search for articles on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: 21.5 hours spent in total
+Time spent: 22 hours spent in total
 
 ## User Stories
 
@@ -20,7 +20,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-* [ ] Implements robust error handling, [check if internet is available](http://guides.codepath.com/android/Sending-and-Managing-Network-Requests#checking-for-network-connectivity), handle error cases, network failures
+* [X] Implements robust error handling, [check if internet is available](http://guides.codepath.com/android/Sending-and-Managing-Network-Requests#checking-for-network-connectivity), handle error cases, network failures
 * [X] Used the **ActionBar SearchView** or custom layout as the query box instead of an EditText
 * [X] User can **share an article link** to their friends or email it to themselves
 * [X] Replaced Filter Settings Activity with a lightweight modal overlay

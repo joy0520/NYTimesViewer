@@ -6,7 +6,9 @@
     <string name="main_viewer_et_search_hint">Insert to search</string>
     <string name="main_viewer_toolbar_item_title_search">Search</string>
     <string name="main_viewer_toolbar_item_title_setting">Setting</string>
+    <string name="main_viewer_no_network_hint">Network unavailable. Please check your internet state.</string>
 
+    <!-- Article viewer -->
     <string name="article_viewer_toolbar_item_title_share">Share</string>
 
     <!-- setting dialog -->
@@ -25,7 +27,7 @@
     </string-array>
     <string name="setting_query_sort_arg_newest" translatable="false">newest</string>
     <string name="setting_query_sort_arg_oldest" translatable="false">oldest</string>
-    
+
     <!-- setting dialog category -->
     <string name="setting_query_news_desk_arts">"&quot;Arts&quot;"</string>
     <string name="setting_query_news_desk_fashion">"&quot;Fashion&quot;"</string>

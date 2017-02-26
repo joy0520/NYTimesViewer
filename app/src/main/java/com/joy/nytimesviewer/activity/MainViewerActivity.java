@@ -18,9 +18,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.joy.nytimesviewer.NetworkCheck;
 import com.joy.nytimesviewer.R;
 import com.joy.nytimesviewer.adapter.ArticlesAdapter;
 import com.joy.nytimesviewer.item.Article;
@@ -38,6 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
+import static android.view.View.GONE;
 import static com.joy.nytimesviewer.setting.SettingModel.SORTED_BY_OLDEST;
 
 public class MainViewerActivity extends AppCompatActivity implements SettingDialog.Callback {
@@ -53,6 +56,8 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     Toolbar mToolbar;
     @BindView(R.id.progress)
     ProgressBar mProgress;
+    @BindView(R.id.no_network_hint)
+    TextView noNetworkHint;
 
     private ArticlesGson mArticlesGson;
     private List<Article> mArticles;
@@ -159,7 +164,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.i("onFailure", "" + responseString);
                 // Hide the progress bar
-                mProgress.setVisibility(View.GONE);
+                mProgress.setVisibility(GONE);
 
                 Toast.makeText(MainViewerActivity.this,
                         "Loading error:\n" + responseString, Toast.LENGTH_LONG)
@@ -176,11 +181,11 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
                 mAdapter.notifyDataSetChanged();
 
                 // Hide the progress bar
-                mProgress.setVisibility(View.GONE);
+                mProgress.setVisibility(GONE);
 
                 // If there are more articles, load them!
                 if (mArticlesGson.getHits() / NUM_ARTICLES_PER_PAGE > mCurrentLoadingPage + 1
-                         && mCurrentLoadingPage +1 < NUM_PAGES_LIMIT) {
+                        && mCurrentLoadingPage + 1 < NUM_PAGES_LIMIT) {
                     // But with a delay, to reduce query times
                     mHandler.postDelayed(new Runnable() {
                         @Override
@@ -194,6 +199,14 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     }
 
     private void onArticleSearch(String query) {
+        // Check network state first!
+        if (!NetworkCheck.isNetworkAvailable(this) || !NetworkCheck.isOnline()) {
+            noNetworkHint.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            noNetworkHint.setVisibility(GONE);
+        }
+
         Toast.makeText(MainViewerActivity.this, "Searching " + query, Toast.LENGTH_SHORT)
                 .show();
         // Show the progress bar
