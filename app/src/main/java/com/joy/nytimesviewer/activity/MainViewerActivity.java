@@ -141,13 +141,14 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
         params.put("page", page);
         params.put("q", query);
         mCurrentLoadingPage = page;
-        // TODO include SettingModel begin date
+        // Include SettingModel begin date
         params.put("begin_date", SettingModel.toQueryString(mSettingModel.date));
         // Include sort order
         params.put("sort", mSettingModel.sorted_by == SORTED_BY_OLDEST
                 ? getString(R.string.setting_query_sort_arg_oldest)
                 : getString(R.string.setting_query_sort_arg_newest));
-        // Include news desk TODO
+        // Include news desk
+        params.put("fq", SettingModel.newsDeskToQueryString(mSettingModel.news_desk));
 
         client.get(baseUrl, params, new TextHttpResponseHandler() {
             @Override
@@ -188,18 +189,6 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
         dialog.setSettingModel(mSettingModel);
         dialog.show(fm, "fragment_setting_dialog");
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == REQUEST_CODE_SETTING_DIALOG) {
-//            Log.i("MainViewer.onActivityResult()", "resultCode=" + resultCode + ", data=" + data);
-//            // Retrieve setting result and update date
-//            mSettingModel = data.getExtras().getParcelable(SettingDialog.EXTRA_KEY_SETTING_MODEL);
-//            Log.i("MainViewer.onActivityResult()", "mSettingModel=" + mSettingModel);
-//            // TODO redo the query using new SettingModel
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 
     @Override
     public void onSettingDialogFinished(SettingModel model) {
