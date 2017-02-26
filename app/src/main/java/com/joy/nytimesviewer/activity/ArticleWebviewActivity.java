@@ -1,6 +1,7 @@
 package com.joy.nytimesviewer.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.joy.nytimesviewer.R;
 
@@ -23,6 +26,8 @@ public class ArticleWebviewActivity extends AppCompatActivity {
     WebView webview;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.progress)
+    ProgressBar mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,19 @@ public class ArticleWebviewActivity extends AppCompatActivity {
             });
             webview.loadUrl(url);
         }
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                mProgress.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                mProgress.setVisibility(View.GONE);
+            }
+        });
 
         setupToolbar();
     }

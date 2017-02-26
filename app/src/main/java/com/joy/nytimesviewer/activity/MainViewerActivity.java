@@ -2,6 +2,7 @@ package com.joy.nytimesviewer.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +41,9 @@ import cz.msebera.android.httpclient.Header;
 import static com.joy.nytimesviewer.setting.SettingModel.SORTED_BY_OLDEST;
 
 public class MainViewerActivity extends AppCompatActivity implements SettingDialog.Callback {
+    private static final long DELAY_LOADING_NEXT_PAGE_MS = 2000;
     private static final int NUM_ARTICLES_PER_PAGE = 10;
+    private static final int NUM_PAGES_LIMIT = 100;
 
     @BindView(R.id.list)
     RecyclerView mList;
@@ -58,6 +61,8 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     private int mCurrentLoadingPage;
     private String mCurrentSearchQuery;
 
+    private Handler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
         setupList();
         setupToolbar();
         mSettingModel = new SettingModel();
+        mHandler = new Handler();
     }
 
     private void setupList() {
@@ -174,8 +180,15 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
                 mProgress.setVisibility(View.GONE);
 
                 // If there are more articles, load them!
-                if (mArticlesGson.getHits() / NUM_ARTICLES_PER_PAGE > mCurrentLoadingPage + 1) {
-                    onArticleSearch(query, page + 1);
+                if (mArticlesGson.getHits() / NUM_ARTICLES_PER_PAGE > mCurrentLoadingPage + 1
+                         && mCurrentLoadingPage +1 < NUM_PAGES_LIMIT) {
+                    // But with a delay, to reduce query times
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onArticleSearch(query, page + 1);
+                        }
+                    }, DELAY_LOADING_NEXT_PAGE_MS);
                 }
             }
         });
