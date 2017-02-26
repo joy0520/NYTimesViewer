@@ -2,7 +2,7 @@
 
 NYTimesViewer is an android app that allows a user to search for articles on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: 18 hours spent in total
+Time spent: 18.5 hours spent in total
 
 ## User Stories
 
@@ -41,7 +41,7 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [X] Do Search again after search filter changed based on previous search string.
 
 ## Video Walkthrough
 
@@ -49,7 +49,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [Gif Maker - Gif Editor](https://play.google.com/store/apps/details?id=com.kayak.studio.gifmaker&hl=zh_HK).
 
 ## Notes
 
@@ -58,11 +58,11 @@ Describe any challenges encountered while building the app.
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
-- [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
-- [ButerKnife](http://jakewharton.github.io/butterknife/) - Field and method binding for Android views
-- [Android RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) - Powerful version of ListView
-- [Gson](https://github.com/google/gson) - A Java serialization/deserialization library that can convert Java Objects into JSON and back.
 - [Android CardView](https://developer.android.com/reference/android/support/v7/widget/CardView.html) - A FrameLayout with a rounded corner background and shadow.
+- [Android RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) - Powerful version of ListView
+- [ButerKnife](http://jakewharton.github.io/butterknife/) - Field and method binding for Android views
+- [Gson](https://github.com/google/gson) - A Java serialization/deserialization library that can convert Java Objects into JSON and back.
+- [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
 

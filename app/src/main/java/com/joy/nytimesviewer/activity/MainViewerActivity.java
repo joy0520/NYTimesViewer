@@ -1,7 +1,6 @@
 package com.joy.nytimesviewer.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
@@ -39,9 +38,6 @@ import cz.msebera.android.httpclient.Header;
 import static com.joy.nytimesviewer.setting.SettingModel.SORTED_BY_OLDEST;
 
 public class MainViewerActivity extends AppCompatActivity implements SettingDialog.Callback {
-    public static final int REQUEST_CODE_SETTING_DIALOG = 0;
-    public static final int RESULT_CODE_SETTING_DIALOG = 0;
-
     private static final int NUM_ARTICLES_PER_PAGE = 10;
 
     @BindView(R.id.list)
@@ -56,6 +52,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     private ArticlesAdapter mAdapter;
     private SettingModel mSettingModel;
     private int mCurrentLoadingPage;
+    private String mCurrentSearchQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,14 +90,9 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // perform a new query here
+                mCurrentSearchQuery = query;
+                // perform a new query
                 searchView.clearFocus();
-                Toast.makeText(MainViewerActivity.this, "Searching " + query, Toast.LENGTH_SHORT)
-                        .show();
-                // Clear old date set
-                mArticles.clear();
-                mAdapter.addAllArticles(mArticles); // Set an empty array to clear the array in adapter
-                mAdapter.notifyDataSetChanged();
                 onArticleSearch(query);
 
                 // Close input manager (virtual keyboard)
@@ -148,7 +140,9 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
                 ? getString(R.string.setting_query_sort_arg_oldest)
                 : getString(R.string.setting_query_sort_arg_newest));
         // Include news desk
-        params.put("fq", SettingModel.newsDeskToQueryString(mSettingModel.news_desk));
+        if (mSettingModel.news_desk.size() != 0) {
+            params.put("fq", SettingModel.newsDeskToQueryString(mSettingModel.news_desk));
+        }
 
         client.get(baseUrl, params, new TextHttpResponseHandler() {
             @Override
@@ -160,14 +154,11 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Gson gson = new Gson();
                 mArticlesGson = gson.fromJson(responseString, ArticlesGson.class);
+                Log.i("onArticleSearch().onSuccess()", "hits=" + mArticlesGson.getHits());
 
                 mArticles.addAll(mArticlesGson.getArticles());
                 mAdapter.addArticles(mArticlesGson.getArticles());
                 mAdapter.notifyDataSetChanged();
-//                Log.i("onSuccess", "mArticles.size()=" + mArticles.size()
-//                +"\nmArticlesGson.getHits()="+mArticlesGson.getHits()
-//                        +", mCurrentLoadingPage="+mCurrentLoadingPage
-//                );
 
                 // If there are more articles, load them!
                 if (mArticlesGson.getHits() / NUM_ARTICLES_PER_PAGE > mCurrentLoadingPage + 1) {
@@ -178,6 +169,12 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     }
 
     private void onArticleSearch(String query) {
+        Toast.makeText(MainViewerActivity.this, "Searching " + query, Toast.LENGTH_SHORT)
+                .show();
+        // Clear old date set
+        mArticles.clear();
+        mAdapter.addAllArticles(mArticles); // Set an empty array to clear the array in adapter
+        mAdapter.notifyDataSetChanged();
         onArticleSearch(query, 0);
     }
 
@@ -194,5 +191,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     public void onSettingDialogFinished(SettingModel model) {
         mSettingModel = model;
         Log.i("MainViewer.onSettingDialogFinished()", "mSettingModel=" + mSettingModel);
+        // Query a search again after filter changed
+        onArticleSearch(mCurrentSearchQuery);
     }
 }
