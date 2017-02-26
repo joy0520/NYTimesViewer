@@ -18,6 +18,7 @@ public class Article {
     }
 
     String web_url;
+    String snippet;
     Headline headline;
     ArrayList<Multimedia> multimedia;
 
@@ -26,6 +27,7 @@ public class Article {
         StringBuilder builder = new StringBuilder();
         builder.append("\narticle {")
                 .append("\nheadline : ").append(getHeadline())
+                .append("\nsnippet : ").append(getSnippet())
                 .append("\nweb_url : ").append(getWebUrl())
                 .append("\nthumbnailFullUrl : ").append(getThumbnailFullUrl())
                 .append(" }");
@@ -34,6 +36,10 @@ public class Article {
 
     public String getHeadline() {
         return headline.main;
+    }
+
+    public String getSnippet() {
+        return snippet;
     }
 
     public String getWebUrl() {

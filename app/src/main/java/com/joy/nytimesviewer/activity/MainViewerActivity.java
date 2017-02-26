@@ -154,7 +154,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Gson gson = new Gson();
                 mArticlesGson = gson.fromJson(responseString, ArticlesGson.class);
-                Log.i("onArticleSearch().onSuccess()", "hits=" + mArticlesGson.getHits());
+                Log.i("onArticleSearch().onSuccess()", "mArticlesGson=" + mArticlesGson);
 
                 mArticles.addAll(mArticlesGson.getArticles());
                 mAdapter.addArticles(mArticlesGson.getArticles());

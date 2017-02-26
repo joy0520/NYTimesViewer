@@ -10,7 +10,10 @@
     <!-- Article item -->
     <color name="colorErrorLoadingThumbnail">#d55549</color>
     <color name="colorNoThumbnail">#123456</color>
-    <color name="cardViewBg">#FFFFFF</color>
+    <color name="colorCardBorder">#000000</color>
+    <color name="colorCardViewBg">#FFFFFF</color>
+    <color name="colorItemArticleHeadline">#000000</color>
+    <color name="colorItemArticleSnippet">#504709</color>
 
     <!-- Article setting dialog -->
     <color name="colorArticleSettingDialogTitle">#000000</color>

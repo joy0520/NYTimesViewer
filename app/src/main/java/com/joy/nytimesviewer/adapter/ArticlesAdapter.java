@@ -2,6 +2,7 @@ package com.joy.nytimesviewer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.LinearGradient;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,6 +31,8 @@ import butterknife.ButterKnife;
  */
 
 public class ArticlesAdapter extends RecyclerView.Adapter {
+    private static final int ITEM_TYPE_NORMAL = 0;
+    private static final int ITEM_TYPE_NO_THUMBNAIL = 1;
 
     private Context mContext;
     private List<Article> mArticles;
@@ -41,13 +44,27 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+        if (mArticles != null && mArticles.get(position) != null) {
+            if (mArticles.get(position).getThumbnailRawUrl() != null
+                    && !mArticles.get(position).getThumbnailRawUrl().isEmpty()) {
+                return ITEM_TYPE_NORMAL;
+            } else {
+                return ITEM_TYPE_NO_THUMBNAIL;
+            }
+        }
         return super.getItemViewType(position);
     }
 
     @Override
     public ArticleHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.i("onCreateViewHolder", "viewType="+viewType);
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View listItem = inflater.inflate(R.layout.item_article, parent, false);
+        View listItem;
+        if (viewType == ITEM_TYPE_NORMAL) {
+            listItem = inflater.inflate(R.layout.item_article, parent, false);
+        } else {
+            listItem = inflater.inflate(R.layout.item_article_no_thumbnail, parent, false);
+        }
 
         return new ArticleHolder(listItem);
     }
@@ -78,15 +95,13 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
                             }
                         });
             } else {
-                Picasso.with(mContext)
-                        .load(R.drawable.ic_article_no_thumbnail)
-                        .fit()
-                        .centerInside()
-                        .into(articleHolder.image);
-                articleHolder.progressBar.setVisibility(View.INVISIBLE);
+                // no thumbnail, do nothing
             }
             if (articleHolder.headline != null) {
                 articleHolder.headline.setText(article.getHeadline());
+            }
+            if (articleHolder.snippet != null) {
+                articleHolder.snippet.setText(article.getSnippet());
             }
 
             // Set up item click listener
@@ -120,13 +135,17 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
     }
 
     static class ArticleHolder extends RecyclerView.ViewHolder {
+        @Nullable
         @BindView(R.id.image)
         ImageView image;
+        @Nullable
         @BindView(R.id.progress)
         ProgressBar progressBar;
         @Nullable
         @BindView(R.id.headline)
         TextView headline;
+        @BindView(R.id.snippet)
+        TextView snippet;
         @BindView(R.id.item_container)
         View container;
 
