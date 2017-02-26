@@ -1,5 +1,5 @@
 <resources>
-    <string name="nyt_api_key" translatable="false">ef0266134f3644fb84cead8073757cde</string>
+    <string name="nyt_api_key" translatable="false">ea17e0a3b7d04e4aa69c7979f831119a</string>
     <string name="app_name">NYTimesSearch</string>
     <string name="activity_article_web_view">Article detail</string>
 
