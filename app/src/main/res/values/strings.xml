@@ -7,6 +7,8 @@
     <string name="main_viewer_toolbar_item_title_search">Search</string>
     <string name="main_viewer_toolbar_item_title_setting">Setting</string>
 
+    <string name="article_viewer_toolbar_item_title_share">Share</string>
+
     <!-- setting dialog -->
     <string name="setting_dialog_title">Setup Filter</string>
     <string name="setting_dialog_title_date_picker">Begin date</string>

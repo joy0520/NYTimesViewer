@@ -10,9 +10,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.joy.nytimesviewer.activity.ArticleWebviewActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" />
 
 </RelativeLayout>
