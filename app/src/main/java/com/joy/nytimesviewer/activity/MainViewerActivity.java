@@ -43,7 +43,7 @@ import static com.joy.nytimesviewer.setting.SettingModel.SORTED_BY_OLDEST;
 public class MainViewerActivity extends AppCompatActivity implements SettingDialog.Callback {
     private static final long DELAY_LOADING_NEXT_PAGE_MS = 2000;
     private static final int NUM_ARTICLES_PER_PAGE = 10;
-    private static final int NUM_PAGES_LIMIT = 100;
+    private static final int NUM_PAGES_LIMIT = 10; // TODO change to 100 for final version
 
     @BindView(R.id.list)
     RecyclerView mList;
@@ -170,8 +170,7 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Gson gson = new Gson();
                 mArticlesGson = gson.fromJson(responseString, ArticlesGson.class);
-                Log.i("onArticleSearch().onSuccess()", "mArticlesGson=" + mArticlesGson);
-
+//                Log.i("onArticleSearch().onSuccess()", "mArticlesGson=" + mArticlesGson);
                 mArticles.addAll(mArticlesGson.getArticles());
                 mAdapter.addArticles(mArticlesGson.getArticles());
                 mAdapter.notifyDataSetChanged();

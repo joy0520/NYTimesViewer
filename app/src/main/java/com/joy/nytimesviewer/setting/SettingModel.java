@@ -14,7 +14,8 @@ import java.util.List;
  * Created by joy0520 on 2017/2/25.
  */
 
-public class SettingModel implements Parcelable {
+@org.parceler.Parcel
+public class SettingModel {
     public static final int SORTED_BY_OLDEST = 0;
     public static final int SORTED_BY_NEWEST = 1;
 
@@ -78,35 +79,4 @@ public class SettingModel implements Parcelable {
         builder.append(")");
         return builder.toString();
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.date != null ? this.date.getTime() : -1);
-        dest.writeInt(this.sorted_by);
-        dest.writeStringList(this.news_desk);
-    }
-
-    protected SettingModel(Parcel in) {
-        long tmpDate = in.readLong();
-        this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.sorted_by = in.readInt();
-        this.news_desk = in.createStringArrayList();
-    }
-
-    public static final Creator<SettingModel> CREATOR = new Creator<SettingModel>() {
-        @Override
-        public SettingModel createFromParcel(Parcel source) {
-            return new SettingModel(source);
-        }
-
-        @Override
-        public SettingModel[] newArray(int size) {
-            return new SettingModel[size];
-        }
-    };
 }

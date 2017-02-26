@@ -7,10 +7,12 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -36,6 +38,17 @@ public class ArticleWebviewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         String url = getIntent().getExtras().getString(EXTRA_KEY_URL);
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                Log.i("onProgressChanged()", "newProgress="+newProgress+", visi="+mProgress.getVisibility());
+                if (newProgress != 100) {
+                    mProgress.setVisibility(View.VISIBLE);
+                } else {
+                    mProgress.setVisibility(View.GONE);
+                }
+            }
+        });
         if (url != null && !url.isEmpty()) {
             webview.setWebViewClient(new WebViewClient() {
                 @Override
@@ -46,19 +59,6 @@ public class ArticleWebviewActivity extends AppCompatActivity {
             });
             webview.loadUrl(url);
         }
-        webview.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                mProgress.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                mProgress.setVisibility(View.GONE);
-            }
-        });
 
         setupToolbar();
     }
@@ -66,6 +66,8 @@ public class ArticleWebviewActivity extends AppCompatActivity {
     protected void setupToolbar() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setLogo(R.drawable.ic_main_viewer);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override

@@ -2,7 +2,7 @@
 
 NYTimesViewer is an android app that allows a user to search for articles on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: 20.5 hours spent in total
+Time spent: 21.5 hours spent in total
 
 ## User Stories
 
@@ -30,7 +30,7 @@ The following **bonus** features are implemented:
 
 * [X] Use the [RecyclerView](http://guides.codepath.com/android/Using-the-RecyclerView) with the `StaggeredGridLayoutManager` to display improve the grid of image results
 * [X] For different news articles that only have text or only have images, use [Heterogenous Layouts](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) with RecyclerView
-* [ ] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
+* [X] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
 * [ ] Leverages the [data binding support module](http://guides.codepath.com/android/Applying-Data-Binding-for-Views) to bind data into layout templates.
 * [X] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.com/android/Drawables#vector-drawables) where appropriate.
 * [ ] Replace Picasso with [Glide](http://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en) for more efficient image rendering.
@@ -63,6 +63,7 @@ Describe any challenges encountered while building the app.
 - [Android RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) - Powerful version of ListView
 - [ButerKnife](http://jakewharton.github.io/butterknife/) - Field and method binding for Android views
 - [Gson](https://github.com/google/gson) - A Java serialization/deserialization library that can convert Java Objects into JSON and back.
+- [Parceler](https://parceler.org/) - Android Parcelable code generator for Google Android
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
