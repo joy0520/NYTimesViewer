@@ -13,7 +13,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     RelativeLayout activityMainViewer;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.progress)
+    ProgressBar mProgress;
 
     private ArticlesGson mArticlesGson;
     private List<Article> mArticles;
@@ -148,6 +152,12 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.i("onFailure", "" + responseString);
+                // Hide the progress bar
+                mProgress.setVisibility(View.GONE);
+
+                Toast.makeText(MainViewerActivity.this,
+                        "Loading error:\n" + responseString, Toast.LENGTH_LONG)
+                        .show();
             }
 
             @Override
@@ -160,6 +170,9 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
                 mAdapter.addArticles(mArticlesGson.getArticles());
                 mAdapter.notifyDataSetChanged();
 
+                // Hide the progress bar
+                mProgress.setVisibility(View.GONE);
+
                 // If there are more articles, load them!
                 if (mArticlesGson.getHits() / NUM_ARTICLES_PER_PAGE > mCurrentLoadingPage + 1) {
                     onArticleSearch(query, page + 1);
@@ -171,6 +184,8 @@ public class MainViewerActivity extends AppCompatActivity implements SettingDial
     private void onArticleSearch(String query) {
         Toast.makeText(MainViewerActivity.this, "Searching " + query, Toast.LENGTH_SHORT)
                 .show();
+        // Show the progress bar
+        mProgress.setVisibility(View.VISIBLE);
         // Clear old date set
         mArticles.clear();
         mAdapter.addAllArticles(mArticles); // Set an empty array to clear the array in adapter
