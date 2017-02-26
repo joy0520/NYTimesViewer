@@ -24,7 +24,7 @@ The following **optional** features are implemented:
 * [X] Used the **ActionBar SearchView** or custom layout as the query box instead of an EditText
 * [X] User can **share an article link** to their friends or email it to themselves
 * [X] Replaced Filter Settings Activity with a lightweight modal overlay
-* [ ] Improved the user interface and experiment with image assets and/or styling and coloring
+* [X] Improved the user interface and experiment with image assets and/or styling and coloring
 
 The following **bonus** features are implemented:
 
@@ -33,7 +33,7 @@ The following **bonus** features are implemented:
 * [X] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
 * [ ] Leverages the [data binding support module](http://guides.codepath.com/android/Applying-Data-Binding-for-Views) to bind data into layout templates.
 * [X] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.com/android/Drawables#vector-drawables) where appropriate.
-* [ ] Replace Picasso with [Glide](http://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en) for more efficient image rendering.
+* [X] Replace Picasso with [Glide](http://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en) for more efficient image rendering.
 * [ ] Uses [retrolambda expressions](http://guides.codepath.com/android/Lambda-Expressions) to cleanup event handling blocks.
 * [X] Leverages the popular [GSON library](http://guides.codepath.com/android/Using-Android-Async-Http-Client#decoding-with-gson-library) to streamline the parsing of JSON data.
 * [ ] Leverages the [Retrofit networking library](http://guides.codepath.com/android/Consuming-APIs-with-Retrofit) to access the New York Times API.
@@ -63,8 +63,8 @@ Describe any challenges encountered while building the app.
 - [Android RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) - Powerful version of ListView
 - [ButerKnife](http://jakewharton.github.io/butterknife/) - Field and method binding for Android views
 - [Gson](https://github.com/google/gson) - A Java serialization/deserialization library that can convert Java Objects into JSON and back.
+- [Glide](http://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en) - Image Loader Library for Android, recommended by Google
 - [Parceler](https://parceler.org/) - Android Parcelable code generator for Google Android
-- [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
 

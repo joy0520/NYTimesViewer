@@ -2,7 +2,6 @@ package com.joy.nytimesviewer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.LinearGradient;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,15 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.joy.nytimesviewer.R;
 import com.joy.nytimesviewer.activity.ArticleWebviewActivity;
 import com.joy.nytimesviewer.item.Article;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,12 +74,11 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
             final Article article = mArticles.get(position);
             // Set up a ArticleHolder
             if (article.getThumbnailRawUrl() != null && !article.getThumbnailRawUrl().isEmpty()) {
-                Picasso.with(mContext)
+                Glide.with(mContext)
                         .load(article.getThumbnailFullUrl())
-                        .fit()
-                        .centerInside()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .error(R.drawable.ic_error_loading_thumbnail)
-                        .into(articleHolder.image, new Callback() {
+                        .into(articleHolder.image/*, new Callback() {
                             @Override
                             public void onSuccess() {
                                 Log.i("Picasso.load into", "onSuccess()");
@@ -93,7 +90,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
                                 Log.i("Picasso.load into", "onError()");
                                 articleHolder.progressBar.setVisibility(View.INVISIBLE);
                             }
-                        });
+                        }*/);
             } else {
                 // no thumbnail, do nothing
             }
